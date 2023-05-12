@@ -1,9 +1,9 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import AuthProvider from "../src/store/authStore";
+import AuthProvider from "./store/authStore";
 import App from "./App";
 import "./index.css";
-import { LocalStorageKeys } from "../src/const/const";
+import { LocalStorageKeys } from "./const/const";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
