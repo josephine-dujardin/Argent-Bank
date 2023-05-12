@@ -5,7 +5,7 @@ import Login from "./pages/login";
 import Profile from "./pages/profile";
 import NotFound from "./pages/notFound";
 
-import { StaticRoutes } from "../src/const/const";
+import { StaticRoutes } from "./const/const";
 
 function App() {
   return (
