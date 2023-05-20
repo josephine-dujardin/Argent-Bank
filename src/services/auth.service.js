@@ -1,8 +1,6 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { LocalStorageKeys } from "../const/const";
 
-// console.log(process.env.REACT_APP_API_BASE_URL)
-
 export const argentBankApi = createApi({
   reducerPath: "argentBankApi",
   baseQuery: fetchBaseQuery({

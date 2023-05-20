@@ -33,7 +33,7 @@ const Profile = () => {
     setName(payload);
     setShowNameEdit(false);
   };
-  // console.log(name.firstName)
+
   return (
     <main className="main bg-dark">
       <div className="header">
