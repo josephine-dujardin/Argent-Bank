@@ -7,25 +7,43 @@ import { updateToken } from "../store/authReducer";
 import { authStore } from "../store/authStore";
 
 const Login = () => {
+    // Mutation hooks for login and profile requests
     const [login] = useLoginMutation();
     const [profileRequest] = useProfileMutation();
+
+    // State variables for error handling and form data
     const [hasError, setHasError] = useState(false);
     const { register, handleSubmit } = useForm({ mode: "onTouched" });
+
+    // State variable for the "Remember Me" checkbox
     const [remember, setRemember] = useState(false);
+
     const navigate = useNavigate();
+
+    // Function to handle form submission
     const onSubmit = async (data) => {
         try {
+            // Perform login request
             const user = await login(data);
+
+            // Handle error and success cases
             if (user.error?.status === 400) setHasError(true);
             if (user.data?.status === 200) {
+                // Store authentication token and profile in local storage
                 remember && localStorage.setItem(LocalStorageKeys.RememberUser, "true");
                 localStorage.setItem(LocalStorageKeys.AuthToken, user.data.body.token);
+
+                // Request user profile
                 const profile = await profileRequest({});
                 localStorage.setItem(
                     LocalStorageKeys.UserProfile,
                     JSON.stringify(profile.data?.body)
                 );
+
+                // Update authentication state in the store
                 authStore.dispatch(updateToken(user.data.body.token));
+
+                // Navigate to the profile page
                 navigate(StaticRoutes.Profile);
             }
         } catch (err) {
@@ -67,7 +85,7 @@ const Login = () => {
                 </form>
                 {hasError && (
                     <small className="error-message">
-                        Email ou/et mot de passe incorrecte
+                        Email or password is incorrect
                     </small>
                 )}
             </section>
