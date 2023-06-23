@@ -5,6 +5,7 @@ import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import argentBankLogo from "../assets/argentBankLogo.png"
 
+// The NavBar component.
 const NavBar = () => {
 
     const pathname = useLocation().pathname;
@@ -20,6 +21,12 @@ const NavBar = () => {
             setName(profile.firstName);
         }
     }, [isConnected]);
+
+    /**
+     * Handles the sign-out action.
+     * Removes authentication-related items from local storage,
+     * navigates to the landing page, and resets the authentication token.
+     */
 
     const onSignOut = () => {
         localStorage.removeItem(LocalStorageKeys.AuthToken);

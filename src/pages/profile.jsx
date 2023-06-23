@@ -5,31 +5,50 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 
 const Profile = () => {
+  // Invoke the AuthGuard to check if the user is authenticated
   AuthGuard();
+
+  // Mutation hook for updating the user profile
   const [updateProfile] = useUpdateProfileMutation();
+
+  // Get the user profile from local storage
   const profile = JSON.parse(localStorage.getItem(LocalStorageKeys.UserProfile));
+
+  // State variable for controlling the name edit mode
   const [showNameEdit, setShowNameEdit] = useState(false);
+
+  // Form management using react-hook-form
   const { register, handleSubmit } = useForm({ mode: "onTouched" });
+
+  // Function to cancel name editing
   const onCancel = (e) => {
     e.preventDefault();
     setShowNameEdit(false);
   };
 
+  // State variables for the first name and last name
   const [name, setName] = useState({
     firstName: profile.firstName,
     lastName: profile.lastName,
   });
 
+  // Function to handle form submission
   const onSubmit = async (data) => {
     const payload = {
       firstName: data.firstName || name.firstName,
       lastName: data.lastName || name.lastName,
     };
+
+    // Update the user's profile
     const newProfile = await updateProfile(payload);
+
+    // Update the profile in local storage
     localStorage.setItem(
       LocalStorageKeys.UserProfile,
       JSON.stringify(newProfile.data.body)
     );
+
+    // Update the displayed name and exit the edit mode
     setName(payload);
     setShowNameEdit(false);
   };

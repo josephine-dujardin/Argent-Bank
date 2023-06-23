@@ -1,10 +1,12 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { LocalStorageKeys } from "../const/const";
 
+// Create the API instance using createApi
 export const argentBankApi = createApi({
   reducerPath: "argentBankApi",
   baseQuery: fetchBaseQuery({
     baseUrl: `http://localhost:3001/api/v1`,
+    // Prepare headers function to include authorization token
     prepareHeaders: function(headers) {
       const token = localStorage.getItem(LocalStorageKeys.AuthToken);
       if (token) {
@@ -15,6 +17,7 @@ export const argentBankApi = createApi({
   }),
   endpoints: function(builder) {
     return {
+      // Login endpoint mutation
       login: builder.mutation({
         query: function(credentials) {
           return {
@@ -24,11 +27,13 @@ export const argentBankApi = createApi({
           };
         },
       }),
+      // Sign up endpoint mutation
       signUp: builder.mutation({
         query: function() {
           return "/user/signup";
         },
       }),
+      // Profile endpoint mutation
       profile: builder.mutation({
         query: function(body) {
           return {
@@ -38,6 +43,7 @@ export const argentBankApi = createApi({
           };
         },
       }),
+      // Update profile endpoint mutation
       updateProfile: builder.mutation({
         query: function(body) {
           return {
