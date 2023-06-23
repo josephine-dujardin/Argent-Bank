@@ -57,6 +57,6 @@ export const argentBankApi = createApi({
   },
 });
 
-// Export the generated hooks for each endpoint mutation
+// Export generated hooks for each endpoint mutation
 export const { useLoginMutation, useSignUpMutation, useProfileMutation, useUpdateProfileMutation } =
   argentBankApi;
