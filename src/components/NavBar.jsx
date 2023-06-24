@@ -31,13 +31,13 @@ const NavBar = () => {
     const onSignOut = () => {
         localStorage.removeItem(LocalStorageKeys.AuthToken);
         localStorage.removeItem(LocalStorageKeys.RememberUser);
-        navigate(StaticRoutes.Landing);
+        navigate("/");
         authStore.dispatch(resetToken());
     };
 
     return (
         <nav className="main-nav">
-            <a className="main-nav-logo" href="/">
+            <a className="main-nav-logo" href="/argent-bank">
                 <img
                     className="main-nav-logo-image"
                     src={argentBankLogo}
@@ -48,7 +48,7 @@ const NavBar = () => {
             <div>
                 {isConnected ? (
                     <>
-                        <a className="main-nav-item" href={StaticRoutes.Profile}>
+                        <a className="main-nav-item" href={"/argent-bank" + StaticRoutes.Profile}>
                             <i className="fa fa-user-circle"></i>
                             {name}
                         </a>
@@ -58,7 +58,7 @@ const NavBar = () => {
                         </button>
                     </>
                 ) : (
-                    <a className="main-nav-item" href={StaticRoutes.Login}>
+                    <a className="main-nav-item" href={"/argent-bank" + StaticRoutes.Login}>
                         <i className="fa fa-user-circle"></i>
                         Sign In
                     </a>

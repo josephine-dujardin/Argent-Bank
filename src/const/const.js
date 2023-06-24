@@ -8,7 +8,7 @@ const LocalStorageKeys = {
   // Define static routes used in the application.
   const StaticRoutes = {
     Profile: "/profile",
-    Landing: "/",
+    Landing: "/argent-bank",
     Login: "/login",
   };
   
